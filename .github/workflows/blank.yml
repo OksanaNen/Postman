@@ -26,8 +26,14 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Install Postman CLI
+        run: curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+        
+      - name: Login to Postman
+        run: postman login --with-api-key PMAK-6464c4b10c49cf349ff137cc-4f9f5c4f331f46a10ce536fbda0fae8f88
+        
+      - name: Run Postman collection
+        run: postman collection run "23365433-d95c7bd6-74ee-4c36-9b5b-02d9f6f22d7a" -e "23365433-a0a563b7-274c-41a1-b469-77c357cea131"
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
